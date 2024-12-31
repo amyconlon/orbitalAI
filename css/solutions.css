@@ -1,0 +1,23 @@
+.solution-section {
+	background: rgba(230, 229, 225, 0.9); /* Using light color */
+	backdrop-filter: blur(10px);
+}
+
+.solution-text h2 {
+	color: var(--primary);
+}
+
+.solution-text p {
+	color: var(--secondary);
+}
+
+.learn-more-btn {
+	background: linear-gradient(
+		300deg,
+		var(--primary),
+		var(--secondary),
+		var(--primary),
+		var(--secondary)
+	);
+	color: var(--light);
+}

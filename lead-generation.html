@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Generation - Orbital AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/solutions.css" rel="stylesheet">
+  <script src="js/chatbot.js" defer></script>
+</head>
+
+<body>
+  <nav>
+    <div class="logo-container">
+      <a href="./index.html" class="home-link">
+        <div class="logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <!-- Main circles -->
+            <circle cx="50" cy="35" r="22" fill="none" stroke="white" stroke-width="4"></circle>
+            <circle cx="35" cy="60" r="22" fill="none" stroke="white" stroke-width="4"></circle>
+            <circle cx="65" cy="60" r="22" fill="none" stroke="white" stroke-width="4"></circle>
+            <!-- Satellite circles -->
+            <circle cx="50" cy="13" r="6" fill="#100926" stroke="white" stroke-width="2"></circle>
+            <circle cx="13" cy="60" r="6" fill="#100926" stroke="white" stroke-width="2"></circle>
+            <circle cx="87" cy="60" r="6" fill="#100926" stroke="white" stroke-width="2"></circle>
+          </svg>
+        </div>
+        <span class="company-name">Orbital AI</span>
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="./index.html">Home</a>
+      <div class="dropdown">
+        <a href="#" class="active">Solutions</a>
+        <div class="dropdown-content">
+          <a href="./solutions.html">Virtual Assistant</a>
+          <a href="./lead-generation.html">Lead Generation</a>
+        </div>
+      </div>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main class="solutions-content">
+    <section class="solution-section">
+      <div class="solution-text">
+        <h2>AI-Powered Lead Generation</h2>
+        <p>Transform your business growth with our cutting-edge AI lead generation solutions.
+          We combine advanced machine learning algorithms with deep market insights to identify
+          and engage high-quality prospects for your business. Our solution analyzes vast amounts
+          of data to predict customer behavior, identify buying signals, and automate personalized
+          outreach at scale.</p>
+        <button class="learn-more-btn">Contact Sales</button>
+      </div>
+      <div class="solution-image">
+        <img src="/api/placeholder/500/400" alt="Lead Generation Dashboard" class="feature-image">
+      </div>
+    </section>
+
+    <section class="solution-section reverse">
+      <div class="solution-text">
+        <h2>Our Approach</h2>
+        <p>Our consultancy leverages AI and machine learning to revolutionize your lead generation
+          process. We implement sophisticated targeting algorithms, behavioral analytics, and
+          predictive modeling to identify prospects most likely to convert. Our system continuously
+          learns and adapts, improving targeting accuracy and conversion rates over time.</p>
+        <button class="learn-more-btn">Learn More</button>
+      </div>
+      <div class="solution-image">
+        <img src="/api/placeholder/500/400" alt="AI Analytics Dashboard" class="feature-image">
+      </div>
+    </section>
+  </main>
+
+  <!-- Chat Widget -->
+  <div class="chat-widget">
+    <button class="chat-toggle" aria-label="Toggle chat">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </button>
+
+    <div class="chat-container">
+      <div class="chat-header">
+        <h3>Chat with Orbital AI</h3>
+        <button class="close-chat" aria-label="Close chat">×</button>
+      </div>
+
+      <div class="chat-messages">
+        <div class="message bot">
+          <div class="message-content">
+            👋 Hello! How can I help you today?
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" placeholder="Type your message..." aria-label="Chat message">
+        <button class="send-message" aria-label="Send message">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
