@@ -9,6 +9,49 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;700;900&display=swap"
     rel="stylesheet">
+  <style>
+    .typing-indicator {
+      padding: 0.5rem;
+      display: none;
+    }
+
+    .typing-indicator span {
+      height: 8px;
+      width: 8px;
+      background: #888;
+      display: inline-block;
+      border-radius: 50%;
+      margin-right: 5px;
+      animation: typing 1s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .message.user {
+      background: var(--primary);
+      margin-left: auto;
+    }
+
+    .message.bot {
+      background: #f0f0f0;
+      margin-right: auto;
+    }
+  </style>
 </head>
 
 <body>
@@ -170,8 +213,7 @@
     </div>
 
     <div id="chatWidget" class="chat-widget">
-      <img
-        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgICAgICAgIDxwYXRoIGQ9Ik0yMSAxNWEyIDIgMCAwIDEtMiAySDdsLTQgNFY1YTIgMiAwIDAgMSAyLTJoMTRhMiAyIDAgMCAxIDIgMnoiIC8+CiAgICAgICAgPC9zdmc+">
+      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgICAgICAgIDxwYXRoIGQ9Ik0yMSAxNWEyIDIgMCAwIDEtMiAySDdsLTQgNFY1YTIgMiAwIDAgMSAyLTJoMTRhMiAyIDAgMCAxIDIgMnoiIC8+CiAgICAgICAgPC9zdmc+">
 
       <div class="chat-container">
         <div class="chat-header">
@@ -188,8 +230,7 @@
         <div class="chat-input">
           <input type="text" placeholder="Type your message...">
           <button class="send-message">
-            <img
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgICAgICAgICAgICA8bGluZSB4MT0iMjIiIHkxPSIyIiB4Mj0iMTEiIHkyPSIxMyI+PC9saW5lPgogICAgICAgICAgICAgIDxwb2x5Z29uIHBvaW50cz0iMjIgMiAxNSAyMiAxMSAxMyAyIDkgMjIgMiI+PC9wb2x5Z29uPgogICAgICAgICAgICA8L3N2Zz4=">
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgICAgICAgICAgICA8bGluZSB4MT0iMjIiIHkxPSIyIiB4Mj0iMTEiIHkyPSIxMyI+PC9saW5lPgogICAgICAgICAgICAgIDxwb2x5Z29uIHBvaW50cz0iMjIgMiAxNSAyMiAxMSAxMyAyIDkgMjIgMiI+PC9wb2x5Z29uPgogICAgICAgICAgICA8L3N2Zz4=">
           </button>
         </div>
       </div>
@@ -197,39 +238,70 @@
   </main>
 
   <script>
-    // Chat widget functionality
     const chatWidget = document.getElementById('chatWidget');
     const chatContainer = document.querySelector('.chat-container');
     const chatToggle = chatWidget.querySelector('img');
     const closeChat = document.querySelector('.close-chat');
+    const messageInput = document.querySelector('.chat-input input');
+    const sendButton = document.querySelector('.send-message');
+    const messagesContainer = document.querySelector('.chat-messages');
 
-    chatToggle.addEventListener('click', () => {
-      chatContainer.classList.toggle('active');
-    });
+    // Add typing indicator to messages container
+    const typingIndicator = document.createElement('div');
+    typingIndicator.className = 'typing-indicator';
+    typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+    messagesContainer.appendChild(typingIndicator);
 
-    closeChat.addEventListener('click', () => {
-      chatContainer.classList.remove('active');
-    });
+    // Bot responses based on keywords
+    const botResponses = {
+      'hello': ['Hi there! How can I help you today?', 'Hello! What can I assist you with?'],
+      'pricing': ['Our pricing starts from $99/month. Would you like to know more about our packages?'],
+      'help': ['I\'d be happy to help! What specific information are you looking for?'],
+      'website': ['We offer custom website development with AI integration. Would you like to see some examples?'],
+      'contact': ['You can reach our team at contact@orbitalai.com or through this chat.'],
+      'default': [
+        'Thanks for your message! Can you tell me more about what you\'re looking for?',
+        'I\'d love to help you. Could you provide more details?',
+        'Let me assist you with that. What specific information do you need?'
+      ]
+    };
 
-    // Modal functionality
-    const modal = document.getElementById('contactModal');
-    const ctaButton = document.querySelector('.cta-button');
-    const closeModal = document.querySelector('.close-modal');
+    function showTypingIndicator() {
+      typingIndicator.style.display = 'block';
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
 
-    ctaButton.addEventListener('click', () => {
-      modal.classList.add('active');
-    });
+    function hideTypingIndicator() {
+      typingIndicator.style.display = 'none';
+    }
 
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
+    function addMessage(message, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+      messageDiv.innerHTML = `
+          <div class="message-content">
+              ${message}
+          </div>
+      `;
+      messagesContainer.insertBefore(messageDiv, typingIndicator);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
 
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
+    function getBotResponse(message) {
+      const lowercaseMessage = message.toLowerCase();
+      for (const [keyword, responses] of Object.entries(botResponses)) {
+        if (lowercaseMessage.includes(keyword)) {
+          return responses[Math.floor(Math.random() * responses.length)];
+        }
       }
-    });
-  </script>
-</body>
+      return botResponses.default[Math.floor(Math.random() * botResponses.default.length)];
+    }
 
-</html>
+    function handleSendMessage() {
+      const message = messageInput.value.trim();
+      if (message) {
+        // Disable input while processing
+        messageInput.disabled = true;
+        sendButton.disabled = true;
+
+        // Add user message
